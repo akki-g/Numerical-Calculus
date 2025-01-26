@@ -11,12 +11,22 @@ def binary_to_double(binary):
     return value
 
 def chop(value, digits):
-    factor = 10 ** digits
-    return int(value * factor) / factor
+    v = value
+    i = 0
+    while v > 1:
+        v /= 10
+        i+=1
+    chopped = int(v * 10**digits) / 10**digits
+    return chopped * 10**i
 
 def round_arithmetic(value, digits):
-    factor = 10 ** digits
-    return int(value * factor + 0.5) / factor
+    v = value
+    i = 0
+    while v > 1:
+        v /= 10
+        i+=1
+    rounded = round(v, digits)
+    return rounded * 10**i
 
 def compute_errors(exact, approx):
     absolute_error = abs(exact - approx)
